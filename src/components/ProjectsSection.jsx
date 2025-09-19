@@ -33,7 +33,7 @@ const projects = [
     description:
       "HandyHero is a web-based app for booking maintenance services. Users can book appointments while companies manage services and schedules.",
     tags: ["Flutter", "Python", "MongoDB", "Firebase", "AWS EC2", "Fast API"],
-    demoURL: "#",
+    demoURL: "https://meetme-cf7ff.web.app/",
     githubUrl: "https://github.com/LySrengThai/MeetMe",
   },
 ];
