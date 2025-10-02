@@ -29,6 +29,7 @@ const projects = [
   },
   {
     id: 3,
+    img: "/meetme.png",
     title: "MeetMe",
     description:
       "HandyHero is a web-based app for booking maintenance services. Users can book appointments while companies manage services and schedules.",
@@ -60,10 +61,18 @@ export const ProjectsSection = () => {
                  border border-primary/30 hover:shadow-primary/40 
                  hover:-translate-y-2 transition-all duration-300"
             >
-              <div className="h-48 bg-gradient-to-tr from-primary/30 via-purple-500/20 to-pink-500/30 flex items-center justify-center">
-                <span className="text-foreground/60 text-sm">
-                  Project Preview
-                </span>
+              <div className="h-48 bg-gradient-to-tr from-primary/30 via-purple-500/20 to-pink-500/30 flex items-center justify-center overflow-hidden rounded-t-xl">
+                {project.img ? (
+                  <img
+                    src={project.img}
+                    alt={project.title}
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <span className="text-foreground/60 text-sm">
+                    Project Preview
+                  </span>
+                )}
               </div>
 
               <div className="p-6">
