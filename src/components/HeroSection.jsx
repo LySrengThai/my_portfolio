@@ -1,49 +1,74 @@
-import { ArrowDown } from "lucide-react";
+import { ArrowRight, Github, Linkedin } from "lucide-react";
+import { profile } from "@/data/portfolio";
 
 export const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden"
+      className="relative flex min-h-screen items-center overflow-hidden pt-14"
     >
-      {/* Content */}
-      <div className="relative z-10 max-w-4xl text-center bg-background/40 rounded-2xl p-8 md:p-12 shadow-lg">
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight">
-          <span className="block opacity-0 animate-fade-in">
-            Hi, I’m
-          </span>
-          <span className="block mt-2">
-            <span className="text-primary opacity-0 animate-fade-in-delay-1">
-              Lysreng “Lee”
-            </span>{" "}
-            <span className="text-gradient opacity-0 animate-fade-in-delay-2">
-              Thai
-            </span>
-          </span>
-        </h1>
+      {/* Subtle grid backdrop */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]"
+      />
 
-        <p className="mt-6 text-base md:text-xl text-muted-foreground max-w-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-          Motivated and adaptable Computer Science graduate with hands-on
-          experience building full-stack applications and a strong foundation in
-          modern web and mobile technologies.
+      <div className="container relative">
+        <p className="eyebrow mb-6 animate-fade-in">
+          {profile.role} · Open to opportunities
         </p>
 
-        <div className="mt-8 opacity-0 animate-fade-in-delay-4">
-          <a
-            href="#projects"
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-primary-foreground font-medium hover:scale-105 hover:shadow-lg transition-transform"
-          >
-            View My Work
-          </a>
-        </div>
-      </div>
+        <h1 className="text-gradient animate-fade-in text-5xl leading-[1.1] sm:text-6xl md:text-7xl [animation-delay:100ms]">
+          {profile.name}
+        </h1>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center animate-bounce">
-        <span className="text-sm text-muted-foreground mb-2">
-          Scroll
-        </span>
-        <ArrowDown className="h-5 w-5 text-primary" />
+        <p className="mt-5 max-w-2xl animate-fade-in text-lg text-muted-foreground [animation-delay:200ms]">
+          {profile.tagline}
+        </p>
+
+        <div className="mt-10 flex flex-wrap items-center gap-3 animate-fade-in [animation-delay:300ms]">
+          <a href="#projects" className="btn-primary">
+            View work <ArrowRight size={16} />
+          </a>
+          <a
+            href={profile.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-ghost"
+          >
+            Resume
+          </a>
+          <div className="ml-1 flex items-center gap-1">
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="rounded-lg p-2.5 text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
+            >
+              <Github size={20} />
+            </a>
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="rounded-lg p-2.5 text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
+            >
+              <Linkedin size={20} />
+            </a>
+          </div>
+        </div>
+
+        {profile.currently && (
+          <p className="mt-10 inline-flex animate-fade-in items-center gap-2 rounded-full border border-border bg-surface/70 px-3 py-1 text-sm text-muted-foreground backdrop-blur [animation-delay:400ms]">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+            </span>
+            Currently · {profile.currently}
+          </p>
+        )}
       </div>
     </section>
   );

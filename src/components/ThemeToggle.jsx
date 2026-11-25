@@ -1,46 +1,30 @@
 import { Moon, Sun } from "lucide-react";
-import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 const ThemeToggle = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme === "dark") {
-      setIsDarkMode(true);
-      document.documentElement.classList.add("dark");
-    } else {
-      localStorage.setItem("theme", "light");
-      setIsDarkMode(false);
-    }
-  }, []);
+  // The inline script in index.html has already applied the correct class.
+  const [isDarkMode, setIsDarkMode] = useState(() =>
+    document.documentElement.classList.contains("dark")
+  );
 
   const toggleTheme = () => {
-    if (isDarkMode) {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-      setIsDarkMode(false);
-    } else {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-      setIsDarkMode(true);
+    const next = !isDarkMode;
+    document.documentElement.classList.toggle("dark", next);
+    try {
+      localStorage.setItem("theme", next ? "dark" : "light");
+    } catch {
+      // storage unavailable; theme just won't persist
     }
+    setIsDarkMode(next);
   };
 
   return (
     <button
       onClick={toggleTheme}
-      className={cn(
-        "fixed top-5 z-50 p-1.5 rounded-full bg-background/70 backdrop-blur border border-white/20 shadow-sm transition-colors duration-300 hover:shadow-primary",
-        "focus:outline-none"
-      )}
+      aria-label={isDarkMode ? "Switch to light theme" : "Switch to dark theme"}
+      className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
     >
-      {isDarkMode ? (
-        <Sun className="h-6 w-6 text-yellow-300" />
-      ) : (
-        <Moon className="h-6 w-6 text-blue-900" />
-      )}
+      {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
     </button>
   );
 };
