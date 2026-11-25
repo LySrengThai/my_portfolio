@@ -1,90 +1,118 @@
 @import "tailwindcss";
 
 @theme {
-  --color-border: hsl(var(--border));
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
+    monospace;
 
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle: var(--subtle);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-ring: var(--ring);
+  --color-band: var(--band);
+  --color-glow-1: var(--glow-1);
+  --color-glow-2: var(--glow-2);
+  --color-glow-3: var(--glow-3);
+  --color-glow-4: var(--glow-4);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
 
-  --color-card: hsl(var(--card));
+  --animate-fade-in: fade-in 0.6s ease-out both;
+  --animate-drift-1: drift-1 22s ease-in-out infinite alternate;
+  --animate-drift-2: drift-2 28s ease-in-out infinite alternate;
+  --animate-drift-3: drift-3 34s ease-in-out infinite alternate;
 
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-pulse-subtle: pulse-subtle 4s ease-in-out infinite;
-  --animate-fade-in: fade-in 0.7s ease-out forwards;
-  --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
-  --animate-fade-in-delay-2: fade-in 0.7s ease-out 0.4s forwards;
-  --animate-fade-in-delay-3: fade-in 0.7s ease-out 0.6s forwards;
-  --animate-fade-in-delay-4: fade-in 0.7s ease-out 0.8s forwards;
-  --animate-meteor: meteor 5s linear infinite;
-
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
+  @keyframes drift-1 {
+    from {
+      transform: translate3d(-8vw, -4vh, 0) scale(1);
     }
-    50% {
-      transform: translateY(-10px);
+    to {
+      transform: translate3d(8vw, 6vh, 0) scale(1.15);
     }
   }
-  @keyframes pulse-subtle {
-    0%,
-    100% {
-      opacity: 1;
+  @keyframes drift-2 {
+    from {
+      transform: translate3d(6vw, 6vh, 0) scale(0.9);
     }
-    50% {
-      opacity: 0.8;
+    to {
+      transform: translate3d(-9vw, -6vh, 0) scale(1.1);
     }
   }
+  @keyframes drift-3 {
+    from {
+      transform: translate3d(-5vw, 5vh, 0) scale(1.05);
+    }
+    to {
+      transform: translate3d(10vw, -7vh, 0) scale(0.9);
+    }
+  }
+
   @keyframes fade-in {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(12px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
-  @keyframes meteor {
-    0% {
-      transform: rotate(215deg) translateX(0);
-      opacity: 1;
-    }
-    70% {
-      opacity: 1;
-    }
-    100% {
-      transform: rotate(215deg) translateX(-500px);
-      opacity: 0;
-    }
-  }
 }
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
-
-    --card: 0 0% 100%;
-
-    --primary: 243 91% 55%;
-    --primary-foreground: 213 31% 91%;
-
-    --border: 214 32% 91%;
+    --background: #f5f8fd;
+    --foreground: #0a0a0b;
+    --surface: #ffffff;
+    --surface-2: #ecf2fb;
+    --muted-foreground: #5f636b;
+    --subtle: #8a8f98;
+    --border: #dfe6f1;
+    --border-strong: #c9d4e6;
+    --band: rgba(59, 130, 246, 0.06);
+    --glow-1: rgba(96, 165, 250, 0.34);
+    --glow-2: rgba(236, 130, 200, 0.26);
+    --glow-3: rgba(56, 189, 248, 0.24);
+    --glow-4: rgba(251, 191, 36, 0.18);
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --primary-foreground: #ffffff;
+    --ring: #3b82f6;
+    --destructive: #dc2626;
+    --destructive-foreground: #ffffff;
+    color-scheme: light;
   }
 
   .dark {
-    --background: 222 47% 4%;
-    --foreground: 213 31% 91%;
-
-    --card: 222 47% 8%;
-
-    --primary: 243 91% 55%;
-    --primary-foreground: 213 31% 91%;
-
-    --border: 217 33% 20%;
+    --background: #0a0d16;
+    --foreground: #f7f8f8;
+    --surface: #0f1320;
+    --surface-2: #161b2a;
+    --muted-foreground: #8a8f98;
+    --subtle: #62666d;
+    --border: #232a3d;
+    --border-strong: #34405a;
+    --band: rgba(96, 165, 250, 0.06);
+    --glow-1: rgba(96, 165, 250, 0.28);
+    --glow-2: rgba(139, 92, 246, 0.2);
+    --glow-3: rgba(56, 130, 246, 0.14);
+    --glow-4: rgba(236, 72, 153, 0.1);
+    --primary: #60a5fa;
+    --primary-hover: #93c5fd;
+    --primary-foreground: #0a0d16;
+    --ring: #93c5fd;
+    --destructive: #b91c1c;
+    --destructive-foreground: #ffffff;
+    color-scheme: dark;
   }
 
   * {
@@ -93,70 +121,89 @@
 
   html {
     @apply scroll-smooth;
+    scroll-padding-top: 4.5rem;
   }
 
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--primary) 35%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
   }
 }
 
 @utility container {
   margin-inline: auto;
-  padding-inline: 2rem;
+  padding-inline: 1.5rem;
+  max-width: 64rem;
+}
 
-  @media (width >= 640px) {
-    max-width: 640px;
+@utility section {
+  @apply py-24 md:py-32;
+}
+
+@utility eyebrow {
+  @apply font-mono text-xs uppercase tracking-widest text-muted-foreground;
+}
+
+@utility card {
+  @apply bg-surface border border-border rounded-xl transition-[border-color,box-shadow] duration-200;
+
+  &:hover {
+    border-color: var(--border-strong);
+    box-shadow: inset 0 1px 0 0
+      color-mix(in srgb, var(--primary) 55%, transparent);
   }
-  @media (width >= 768px) {
-    max-width: 768px;
+}
+
+@utility text-gradient {
+  background-image: linear-gradient(
+    135deg,
+    var(--foreground) 35%,
+    var(--primary-hover)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* The clipped background only paints inside the box; keep room for descenders (y, g, p). */
+  padding-bottom: 0.12em;
+}
+
+@utility btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors duration-200 hover:bg-primary-hover disabled:opacity-60 disabled:pointer-events-none;
+}
+
+@utility btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg border border-border-strong px-5 py-2.5 text-sm font-medium text-foreground transition-colors duration-200 hover:bg-surface-2;
+}
+
+@utility input-base {
+  @apply w-full rounded-lg border border-border-strong bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-subtle focus:outline-none focus:ring-2 focus:ring-ring;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-  @media (width >= 1024px) {
-    max-width: 1024px;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
-  @media (width >= 1280px) {
-    max-width: 1280px;
-  }
-  @media (width >= 1400px) {
-    max-width: 1400px;
-  }
-}
-
-@utility text-glow {
-  @apply relative;
-  text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
-}
-
-@utility card-hover {
-  @apply transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg;
-}
-
-@utility gradient-border {
-  @apply relative rounded-md;
-  background: linear-gradient(to right, hsl(var(--card)), hsl(var(--card)));
-  background-clip: padding-box;
-  border: 1px solid transparent;
-}
-
-@utility cosmic-button {
-  @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium 
-         transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)]
-         hover:scale-105 active:scale-95;
-}
-
-@utility star {
-  @apply absolute rounded-full bg-white;
-  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
-}
-
-@utility meteor {
-  @apply absolute bg-linear-to-r from-white via-white to-transparent rounded-full;
-  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
-}
-
-#root {
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 0;
-  text-align: center;
 }

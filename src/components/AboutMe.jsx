@@ -1,97 +1,60 @@
-import { Code, PaintBucket, User } from "lucide-react";
+import { Section } from "@/components/ui/Section";
+import { about, profile } from "@/data/portfolio";
+
+const initials = profile.name
+  .split(" ")
+  .map((part) => part[0])
+  .join("");
 
 export const AboutMe = () => {
   return (
-    <section id="about" className="py-24 px-4 relative">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          About <span className="text-primary">Me</span>
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <h3 className="text-2xl font-semibold">
-              Passionate Full Stack Web Developer
-            </h3>
-
-            <p className="text-muted-foreground">
-              With over 2 years of experience in web development, I specialize
-              in creating responsive, accessible, and performant web applications
-              using modern technologies.
-            </p>
-
-            <p className="text-muted-foreground">
-              Passionate about solving real-world problems through clean,
-              scalable code. Seeking to join a dynamic U.S.-based software team
-              to contribute and grow as a developer.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-              <a href="#contact" className="cosmic-button">
-                Get In Touch
-              </a>
-
-              <a
-                href="/Resume_Lysreng_thai.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
-              >
-                Download CV
-              </a>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 gap-6">
-            <div className="gradient-border bg-gradient-to-br from-primary/20 via-indigo-500/10 to-purple-500/20 p-6 rounded-lg shadow-sm card-hover hover:shadow-primary/40">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Code className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg">Web Development</h4>
-                  <p className="text-muted-foreground">
-                    Creating responsive websites and web applications with modern
-                    frameworks.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="gradient-border bg-gradient-to-br from-primary/20 via-indigo-500/10 to-purple-500/20 p-6 rounded-lg shadow-sm card-hover hover:shadow-primary/40">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <User className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg">Software Engineer</h4>
-                  <p className="text-muted-foreground">
-                    Creating full-stack applications for users with modern
-                    frameworks, scalable backends, and intuitive UI/UX.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="gradient-border bg-gradient-to-br from-primary/20 via-indigo-500/10 to-purple-500/20 p-6 rounded-lg shadow-sm card-hover hover:shadow-primary/40">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <PaintBucket className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg">UI/UX Design</h4>
-                  <p className="text-muted-foreground">
-                    Designing intuitive and user-friendly interfaces with
-                    attention to accessibility, responsiveness, and modern
-                    design trends.
-                  </p>
-                </div>
-              </div>
-            </div>
-
+    <Section id="about" index="01" label="About" title={about.heading} tinted>
+      <div className="grid gap-12 md:grid-cols-2">
+        <div className="space-y-5 text-muted-foreground">
+          {about.paragraphs.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
+          <div className="flex flex-wrap gap-3 pt-3">
+            <a href="#contact" className="btn-primary">
+              Get in touch
+            </a>
           </div>
         </div>
+
+        <div className="space-y-8">
+        <div className="card aspect-square w-full max-w-64 overflow-hidden">
+          {profile.photo ? (
+            <img
+              src={profile.photo}
+              alt={profile.name}
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover object-[50%_15%]"
+            />
+          ) : (
+            <div
+              aria-hidden="true"
+              className="grid h-full w-full place-items-center bg-gradient-to-br from-primary/25 via-glow-3 to-glow-2"
+            >
+              <span className="font-mono text-6xl font-medium tracking-tight text-foreground/70">
+                {initials}
+              </span>
+            </div>
+          )}
+        </div>
+
+        <dl className="divide-y divide-border border-y border-border">
+          {about.focus.map((item) => (
+            <div key={item.title} className="py-5">
+              <dt className="font-medium">{item.title}</dt>
+              <dd className="mt-1 text-sm text-muted-foreground">
+                {item.text}
+              </dd>
+            </div>
+          ))}
+        </dl>
+        </div>
       </div>
-    </section>
+    </Section>
   );
 };
